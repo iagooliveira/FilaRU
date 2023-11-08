@@ -1,3 +1,4 @@
+import 'package:fila_ru/main.dart';
 import 'package:flutter/material.dart';
 
 class Cardapio extends StatelessWidget {
@@ -7,7 +8,8 @@ class Cardapio extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Cardapio'),
+          title: const Text('Cardápio', style: TextStyle(color: Colors.white)),
+          backgroundColor: const Color.fromRGBO(47, 74, 200, 1),
         ),
         body: Center(
             child: Column(
@@ -118,6 +120,11 @@ class Cardapio extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 12))),
               ),
             ),
+            CustomPaint(
+              size: const Size(double.infinity,
+                  45), // Defina a largura como infinita e a altura desejada
+              painter: MyPainter(),
+            ),
           ],
         )));
   }
@@ -132,7 +139,8 @@ class Detalhe extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Detalhe'),
+          title: const Text('Detalhe', style: TextStyle(color: Colors.white)),
+          backgroundColor: const Color.fromRGBO(47, 74, 200, 1),
         ),
         body: Center(
           child: Text(cor.toString()),
