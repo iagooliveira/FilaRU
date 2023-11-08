@@ -35,69 +35,36 @@ class MyHomePage extends StatelessWidget {
         body: Center(
             child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 50, bottom: 40, left: 10, right: 10),
-              child: Image.asset('assets/images/ufba.jpg',
-                  width: 200, height: 100),
+            const LogosWidget(),
+            CustomNavigatorButtonWidget(
+              buttonText: 'ALUNO',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Detalhe(texto: 'Aluno'),
+                  ),
+                );
+              },
+              width: 180,
+              height: 40,
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Image.asset('assets/images/rufila.jpeg',
-                  width: 200, height: 120),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: SizedBox(
-                width: 180,
-                height: 40,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const Detalhe(cor: 'Aluno')));
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromRGBO(47, 74, 200, 1)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ))),
-                    child: const Text('ALUNO',
-                        style: TextStyle(color: Colors.white, fontSize: 12))),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: SizedBox(
-                width: 180,
-                height: 40,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Restaurante()));
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromRGBO(47, 74, 200, 1)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ))),
-                    child: const Text('RESTAURANTE',
-                        style: TextStyle(color: Colors.white, fontSize: 12))),
-              ),
+            CustomNavigatorButtonWidget(
+              buttonText: 'RESTAURANTE',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Restaurante(),
+                  ),
+                );
+              },
+              width: 180,
+              height: 40,
             ),
             CustomPaint(
               size: const Size(double.infinity,
-                  135), // Defina a largura como infinita e a altura desejada
+                  150), // Defina a largura como infinita e a altura desejada
               painter: MyPainter(),
             ),
           ],
@@ -106,9 +73,9 @@ class MyHomePage extends StatelessWidget {
 }
 
 class Detalhe extends StatelessWidget {
-  const Detalhe({super.key, required this.cor});
+  const Detalhe({super.key, required this.texto});
 
-  final String cor;
+  final String texto;
 
   @override
   Widget build(BuildContext context) {
@@ -118,8 +85,73 @@ class Detalhe extends StatelessWidget {
           backgroundColor: const Color.fromRGBO(47, 74, 200, 1),
         ),
         body: Center(
-          child: Text(cor.toString()),
+          child: Text(texto.toString()),
         ));
+  }
+}
+
+class LogosWidget extends StatelessWidget {
+  const LogosWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding:
+              const EdgeInsets.only(top: 50, bottom: 20, left: 10, right: 10),
+          child: Image.asset('assets/images/ufba.jpg', width: 200, height: 100),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child:
+              Image.asset('assets/images/rufila.jpeg', width: 200, height: 120),
+        ),
+      ],
+    );
+  }
+}
+
+class CustomNavigatorButtonWidget extends StatelessWidget {
+  final String buttonText;
+  final VoidCallback? onPressed;
+  final double width;
+  final double height;
+
+  const CustomNavigatorButtonWidget({
+    super.key,
+    required this.buttonText,
+    this.onPressed,
+    this.width = 180,
+    this.height = 40,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+              const Color.fromRGBO(47, 74, 200, 1),
+            ),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+          child: Text(
+            buttonText,
+            style: const TextStyle(color: Colors.white, fontSize: 12),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -133,7 +165,7 @@ class MyPainter extends CustomPainter {
     final center = Offset(size.width / 2,
         size.height); // Posição da elipse no centro inferior da tela
     final radiusX = size.width;
-    const radiusY = 80.0; // Altura da elipse
+    const radiusY = 50.0; // Altura da elipse
 
     canvas.drawOval(
         Rect.fromCenter(center: center, width: radiusX, height: radiusY),

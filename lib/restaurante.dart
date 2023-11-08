@@ -16,114 +16,51 @@ class Restaurante extends StatelessWidget {
         body: Center(
             child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Image.asset('assets/images/ufba.jpg',
-                  width: 200, height: 100),
+            const LogosWidget(),
+            CustomNavigatorButtonWidget(
+              buttonText: 'Area Funcionario',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        const Detalhe(texto: 'Area Funcionario'),
+                  ),
+                );
+              },
+              width: 200,
+              height: 40,
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Image.asset('assets/images/rufila.jpeg',
-                  width: 200, height: 120),
+            CustomNavigatorButtonWidget(
+              buttonText: 'Area Restaurante',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        const Detalhe(texto: 'Area Restaurante'),
+                  ),
+                );
+              },
+              width: 200,
+              height: 40,
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: SizedBox(
-                width: 180,
-                height: 40,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const Detalhe(cor: 'Area Funcionario')));
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromRGBO(47, 74, 200, 1)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ))),
-                    child: const Text('Area Funcionario',
-                        style: TextStyle(color: Colors.white, fontSize: 12))),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: SizedBox(
-                width: 180,
-                height: 40,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const Detalhe(cor: 'Area Restaurante')));
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromRGBO(47, 74, 200, 1)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ))),
-                    child: const Text('Area Restaurante',
-                        style: TextStyle(color: Colors.white, fontSize: 12))),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: SizedBox(
-                width: 180,
-                height: 40,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Cardapio()));
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromRGBO(47, 74, 200, 1)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ))),
-                    child: const Text('Area Cardapio',
-                        style: TextStyle(color: Colors.white, fontSize: 12))),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: SizedBox(
-                width: 180,
-                height: 40,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromRGBO(47, 74, 200, 1)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ))),
-                    child: const Text('Voltar',
-                        style: TextStyle(color: Colors.white, fontSize: 12))),
-              ),
+            CustomNavigatorButtonWidget(
+              buttonText: 'Area Cardapio',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Cardapio(),
+                  ),
+                );
+              },
+              width: 200,
+              height: 40,
             ),
             CustomPaint(
               size: const Size(double.infinity,
-                  45), // Defina a largura como infinita e a altura desejada
+                  75), // Defina a largura como infinita e a altura desejada
               painter: MyPainter(),
             ),
           ],
@@ -132,9 +69,9 @@ class Restaurante extends StatelessWidget {
 }
 
 class Detalhe extends StatelessWidget {
-  const Detalhe({super.key, required this.cor});
+  const Detalhe({super.key, required this.texto});
 
-  final String cor;
+  final String texto;
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +81,7 @@ class Detalhe extends StatelessWidget {
           backgroundColor: const Color.fromRGBO(47, 74, 200, 1),
         ),
         body: Center(
-          child: Text(cor.toString()),
+          child: Text(texto.toString()),
         ));
   }
 }
