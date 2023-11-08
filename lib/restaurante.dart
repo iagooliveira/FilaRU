@@ -1,35 +1,14 @@
-import 'package:fila_ru/restaurante.dart';
+import 'package:fila_ru/cardapio.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'RuFila',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class Restaurante extends StatelessWidget {
+  const Restaurante({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Início'),
+          title: const Text('Restaurante'),
         ),
         body: Center(
             child: Column(
@@ -55,7 +34,7 @@ class MyHomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const Detalhe(cor: 'Aluno')));
+                                  const Detalhe(cor: 'Area Funcionario')));
                     },
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
@@ -65,7 +44,7 @@ class MyHomePage extends StatelessWidget {
                                 RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ))),
-                    child: const Text('ALUNO',
+                    child: const Text('Area Funcionario',
                         style: TextStyle(color: Colors.white, fontSize: 12))),
               ),
             ),
@@ -79,7 +58,8 @@ class MyHomePage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Restaurante()));
+                              builder: (context) =>
+                                  const Detalhe(cor: 'Area Restaurante')));
                     },
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
@@ -89,7 +69,53 @@ class MyHomePage extends StatelessWidget {
                                 RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ))),
-                    child: const Text('RESTAURANTE',
+                    child: const Text('Area Restaurante',
+                        style: TextStyle(color: Colors.white, fontSize: 12))),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: SizedBox(
+                width: 180,
+                height: 40,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const Cardapio()));
+                    },
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color.fromRGBO(47, 74, 200, 1)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ))),
+                    child: const Text('Area Cardapio',
+                        style: TextStyle(color: Colors.white, fontSize: 12))),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: SizedBox(
+                width: 180,
+                height: 40,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color.fromRGBO(47, 74, 200, 1)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ))),
+                    child: const Text('Voltar',
                         style: TextStyle(color: Colors.white, fontSize: 12))),
               ),
             ),
