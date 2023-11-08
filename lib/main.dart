@@ -55,7 +55,7 @@ class MyHomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Restaurante(),
+                    builder: (context) => const PageRestaurante(),
                   ),
                 );
               },
@@ -64,7 +64,7 @@ class MyHomePage extends StatelessWidget {
             ),
             CustomPaint(
               size: const Size(double.infinity,
-                  150), // Defina a largura como infinita e a altura desejada
+                  110), 
               painter: MyPainter(),
             ),
           ],
@@ -99,7 +99,7 @@ class LogosWidget extends StatelessWidget {
       children: [
         Padding(
           padding:
-              const EdgeInsets.only(top: 50, bottom: 20, left: 10, right: 10),
+              const EdgeInsets.only(top: 20, bottom: 10, left: 10, right: 10),
           child: Image.asset('assets/images/ufba.jpg', width: 200, height: 100),
         ),
         Padding(
@@ -163,9 +163,9 @@ class MyPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     final center = Offset(size.width / 2,
-        size.height); // Posição da elipse no centro inferior da tela
+        size.height); 
     final radiusX = size.width;
-    const radiusY = 50.0; // Altura da elipse
+    const radiusY = 60.0; 
 
     canvas.drawOval(
         Rect.fromCenter(center: center, width: radiusX, height: radiusY),

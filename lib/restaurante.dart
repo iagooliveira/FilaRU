@@ -2,8 +2,8 @@ import 'package:fila_ru/cardapio.dart';
 import 'package:fila_ru/main.dart';
 import 'package:flutter/material.dart';
 
-class Restaurante extends StatelessWidget {
-  const Restaurante({super.key});
+class PageRestaurante extends StatelessWidget {
+  const PageRestaurante({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class Restaurante extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Cardapio(),
+                    builder: (context) => const PageCardapio(),
                   ),
                 );
               },
@@ -59,8 +59,7 @@ class Restaurante extends StatelessWidget {
               height: 40,
             ),
             CustomPaint(
-              size: const Size(double.infinity,
-                  75), // Defina a largura como infinita e a altura desejada
+              size: const Size(double.infinity, 30),
               painter: MyPainter(),
             ),
           ],
