@@ -28,47 +28,48 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Início', style: TextStyle(color: Colors.white)),
-          backgroundColor: const Color.fromRGBO(47, 74, 200, 1),
-        ),
-        body: Center(
-            child: Column(
-          children: [
-            const LogosWidget(),
-            CustomNavigatorButtonWidget(
-              buttonText: 'ALUNO',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Detalhe(texto: 'Aluno'),
-                  ),
-                );
-              },
-              width: 180,
-              height: 40,
-            ),
-            CustomNavigatorButtonWidget(
-              buttonText: 'RESTAURANTE',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const PageRestaurante(),
-                  ),
-                );
-              },
-              width: 180,
-              height: 40,
-            ),
-            CustomPaint(
-              size: const Size(double.infinity,
-                  110), 
-              painter: MyPainter(),
-            ),
-          ],
-        )));
+      appBar: AppBar(
+        title: const Text('Início', style: TextStyle(color: Colors.white)),
+        backgroundColor: const Color.fromRGBO(47, 74, 200, 1),
+      ),
+      body: Center(
+          child: Column(
+        children: [
+          const LogosWidget(),
+          CustomNavigatorButtonWidget(
+            buttonText: 'ALUNO',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Detalhe(texto: 'Aluno'),
+                ),
+              );
+            },
+            width: 180,
+            height: 40,
+          ),
+          CustomNavigatorButtonWidget(
+            buttonText: 'RESTAURANTE',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PageRestaurante(),
+                ),
+              );
+            },
+            width: 180,
+            height: 40,
+          ),
+        ],
+      )),
+      bottomSheet: CustomPaint(
+        size: const Size(
+            double.infinity, 20), // Largura 100% da tela, altura desejada
+        painter: HalfEllipsePainter(),
+      ),
+    );
   }
 }
 
@@ -162,14 +163,32 @@ class MyPainter extends CustomPainter {
       ..color = const Color.fromRGBO(47, 74, 200, 1)
       ..style = PaintingStyle.fill;
 
-    final center = Offset(size.width / 2,
-        size.height); 
+    final center = Offset(size.width / 2, size.height);
     final radiusX = size.width;
-    const radiusY = 60.0; 
+    const radiusY = 60.0;
 
     canvas.drawOval(
         Rect.fromCenter(center: center, width: radiusX, height: radiusY),
         paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
+  }
+}
+
+class HalfEllipsePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = const Color.fromRGBO(47, 74, 200, 1) 
+      ..style = PaintingStyle.fill;
+
+    final rect = Rect.fromPoints(const Offset(0, 0),
+        Offset(size.width, size.height * 2)); 
+
+    canvas.drawArc(rect, 0, -3.14, true, paint); 
   }
 
   @override
