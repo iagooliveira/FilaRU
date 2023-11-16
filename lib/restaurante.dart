@@ -1,3 +1,4 @@
+import 'package:fila_ru/areaRestaurante.dart';
 import 'package:fila_ru/cardapio.dart';
 import 'package:fila_ru/main.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +37,7 @@ class PageRestaurante extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      const Detalhe(texto: 'Area Restaurante'),
+                  builder: (context) => const AreaRestaurante(),
                 ),
               );
             },

@@ -1,3 +1,4 @@
+import 'package:fila_ru/divulgarCardapio.dart';
 import 'package:fila_ru/main.dart';
 import 'package:flutter/material.dart';
 
@@ -21,8 +22,7 @@ class PageCardapio extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      const Detalhe(texto: 'Divulgar Cardapio'),
+                  builder: (context) => const DivulgarCardapio(),
                 ),
               );
             },
@@ -77,6 +77,8 @@ class FormCardapio extends StatelessWidget {
 
   FormCardapio({super.key});
 
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,97 +90,137 @@ class FormCardapio extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.only(top: 2.0, left: 25.0, right: 25.0),
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Image.asset('assets/images/rufila.jpeg',
-                    width: 200, height: 120),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: TextField(
-                  controller: _controladorSalada,
-                  decoration: const InputDecoration(labelText: 'Saladas'),
-                  keyboardType: TextInputType.text,
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Image.asset('assets/images/rufila.jpeg',
+                      width: 200, height: 120),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: TextField(
-                  controller: _controladorPratoPrincipal,
-                  decoration:
-                      const InputDecoration(labelText: 'Prato Principal'),
-                  keyboardType: TextInputType.text,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: TextField(
-                  controller: _controladorGuarnicao,
-                  decoration: const InputDecoration(labelText: 'Guarnição'),
-                  keyboardType: TextInputType.text,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: TextField(
-                  controller: _controladorSobremesa,
-                  decoration: const InputDecoration(labelText: 'Sobremesa'),
-                  keyboardType: TextInputType.text,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: TextField(
-                  controller: _controladorSuco,
-                  decoration: const InputDecoration(labelText: 'Suco'),
-                  keyboardType: TextInputType.text,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25.0),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromRGBO(47, 74, 200, 1)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: TextFormField(
+                    controller: _controladorSalada,
+                    decoration: const InputDecoration(labelText: 'Saladas'),
+                    keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Salada não pode ser vazio";
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
-                  onPressed: () {
-                    final String salada = _controladorSalada.text;
-                    final String pratoPrincipal =
-                        _controladorPratoPrincipal.text;
-                    final String guarnicao = _controladorGuarnicao.text;
-                    final String sobremesa = _controladorSobremesa.text;
-                    final String suco = _controladorSuco.text;
-
-                    final cardapio = Cardapio(
-                      salada: salada,
-                      pratoPrincipal: pratoPrincipal,
-                      guarnicao: guarnicao,
-                      sobremesa: sobremesa,
-                      suco: suco,
-                    );
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Detalhe(
-                          cardapio: cardapio,
-                          texto: 'Cardapio criado:',
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: TextFormField(
+                    controller: _controladorPratoPrincipal,
+                    decoration:
+                        const InputDecoration(labelText: 'Prato Principal'),
+                    keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Prato Principal não pode ser vazio";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: TextFormField(
+                    controller: _controladorGuarnicao,
+                    decoration: const InputDecoration(labelText: 'Guarnição'),
+                    keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Guarnicao não pode ser vazio";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: TextFormField(
+                    controller: _controladorSobremesa,
+                    decoration: const InputDecoration(labelText: 'Sobremesa'),
+                    keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Sobremesa não pode ser vazio";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: TextFormField(
+                    controller: _controladorSuco,
+                    decoration: const InputDecoration(labelText: 'Suco'),
+                    keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Suco não pode ser vazio";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 25.0),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromRGBO(47, 74, 200, 1)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                    );
-                  },
-                  child: const Text('Cadastrar',
-                      style: TextStyle(color: Colors.white)),
+                    ),
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        final String salada = _controladorSalada.text;
+                        final String pratoPrincipal =
+                            _controladorPratoPrincipal.text;
+                        final String guarnicao = _controladorGuarnicao.text;
+                        final String sobremesa = _controladorSobremesa.text;
+                        final String suco = _controladorSuco.text;
+
+                        final cardapio = Cardapio(
+                          salada: salada,
+                          pratoPrincipal: pratoPrincipal,
+                          guarnicao: guarnicao,
+                          sobremesa: sobremesa,
+                          suco: suco,
+                        );
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Detalhe(
+                              cardapio: cardapio,
+                              texto: 'Cardapio criado:',
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text('Cadastrar',
+                        style: TextStyle(color: Colors.white)),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
