@@ -1,3 +1,4 @@
+import 'package:fila_ru/alunoCadastro.dart';
 import 'package:fila_ru/restaurante.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +43,7 @@ class MyHomePage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Detalhe(texto: 'Aluno'),
+                  builder: (context) => const AlunoInicio(),
                 ),
               );
             },
@@ -182,13 +183,13 @@ class HalfEllipsePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = const Color.fromRGBO(47, 74, 200, 1) 
+      ..color = const Color.fromRGBO(47, 74, 200, 1)
       ..style = PaintingStyle.fill;
 
-    final rect = Rect.fromPoints(const Offset(0, 0),
-        Offset(size.width, size.height * 2)); 
+    final rect = Rect.fromPoints(
+        const Offset(0, 0), Offset(size.width, size.height * 2));
 
-    canvas.drawArc(rect, 0, -3.14, true, paint); 
+    canvas.drawArc(rect, 0, -3.14, true, paint);
   }
 
   @override
