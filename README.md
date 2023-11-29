@@ -1,6 +1,13 @@
 # fila_ru
 
-A new Flutter project.
+RU Fila é um aplicativo de gerenciamento de fila para os RUs da UFBA, no qual o usuário pode consultar o cardápio do dia, se inscrever na fila e acompanhar o fluxo. A gestão é feita pelo próprio restaurante que deve estabelecer o limite de clientes por sessão e cadastrar o cardápio do dia.
+
+Equipe 2:
+    - Caio OLiveira
+    - Iago Oliveira
+    - Milena Limoeiro
+    - Nicholas Fernandes
+    - Suyane Miranda
 
 ## Getting Started
 
